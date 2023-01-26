@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+
+        .lower {
+            display: flex;
+
+        }
+
+        .navbar {
+            display: flex;
+
+        }
+
+        .header {
+            background: tomato;
+            height: 120px;
+            display: flex;
+            width: 50%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+        }
+
+        .main {
+            background: yellow;
+            display: flex;
+            width: 50%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+
+        }
+
+        .footer {
+            background: green;
+            display: flex;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+
+        }
+
+        .aside1 {
+            background: turquoise;
+            display: flex;
+            width: 50%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+
+        }
+
+        .aside2 {
+            background: pink;
+            display: flex;
+            width: 50%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+
+        }
+
+        @media all and (max-width:450px) {
+            .aside {
+                width: 100%;
+            }
+
+            .lower {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav class="navbar">
+            <header class="header">
+                <h1>Header</h1>
+            </header>
+            <article class="main">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, culpa tempora sunt nihil unde quo
+                itaque
+                assumenda? Consectetur similique ut suscipit nulla, facilis aspernatur omnis at sapiente numquam, aut
+                quae?
+            </article>
+        </nav>
+
+        <div class="lower">
+            <aside class="aside aside1">
+                <h1>Aside1</h1>
+            </aside>
+            <aside class="aside aside2">
+                <h1>Aside2</h1>
+            </aside>
+
+        </div>
+        <footer class="footer">
+            <h1>footer</h1>
+        </footer>
+    </div>
+</body>
+
+</html>
