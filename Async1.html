@@ -9,16 +9,18 @@
 </head>
 
 <body>
-    <button id="add-todo-button">Enter</button>
+    <button id="add-todo-button">Add Data</button><br>
+    <button id="update-todo-button">Change Using PUT</button><br>
+    <button id="update-todo-property-button">Change Address Using PATCH</button>
     <script>
 
-        //====== Send the request to the server -- Using fetch-promises =============//
+        //====== Send the request to the server - POST -- Using fetch-promises =============//
         // let addTodoButton = document.getElementById("add-todo-button");
 
         // addTodoButton.addEventListener('click', event => {// Attach an event listener to the button
         //     event.preventDefault();
 
-        //     newTodo = { name: "Kenal", };
+        //     newTodo = { name: "Kenal", address: "valsad"};
 
         //     const requestOptions = {
         //         method: 'POST',
@@ -33,7 +35,7 @@
         // });
 
 
-        //====== Send the request to the server -- Using fetch-async-await =============//
+        //====== Send the request to the server - POST-- Using fetch-async-await =============//
         const addTodoButton = document.getElementById('add-todo-button');
         addTodoButton.addEventListener('click', event => {
             event.preventDefault(); // prevent the default form submission behavior
@@ -42,7 +44,7 @@
 
         const addTodo = async () => {
 
-            const newTodo = { name: "Kenal", };
+            const newTodo = { name: "Kenal", address: "valsad" };
 
             const requestOptions = {
                 method: 'POST',
@@ -97,6 +99,132 @@
             }
         };
         fetchTodos();
+
+
+
+
+
+        //--(PUT) IS USED TO UPDATE WHOLE DATA
+        //====== Send the request to the server - PUT -- Using fetch-promises =============//
+        // const updateTodoButton = document.getElementById('update-todo-button');
+        // updateTodoButton.addEventListener('click', event => {
+        //     event.preventDefault(); // prevent the default form submission behavior
+        //     updateTodo();
+        // });
+
+        // const updateTodo = () => {
+        //     // Define the updated todo data
+        //     const updatedTodo =  { name: "Kenal", address: "valsad"};
+
+        //     // Set the request options, including method, headers, and body
+        //     const requestOptions = {
+        //         method: 'PUT',
+        //         headers: { 'Content-Type': 'application/json' },
+        //         body: JSON.stringify(updatedTodo),
+        //     };
+
+        //     // Send the request to the server and handle the response with Promises
+        //     fetch('http://localhost:3000/table/2', requestOptions)
+        //         .then(response => response.json())
+        //         .then(data => console.log(`Updated date using PUT is: `, data))
+        //         .catch(error => console.error(error));
+        // };
+
+        //====== Send the request to the server - PUT -- Using fetch-async-await =============//
+        // Call the updateTodo function when the button is clicked
+        const updateTodoButton = document.getElementById('update-todo-button');
+        updateTodoButton.addEventListener('click', event => {
+            event.preventDefault(); // prevent the default form submission behavior
+            updateTodo();
+        });
+        const updateTodo = async () => {
+            try {
+                // Define the updated todo data
+                const updatedTodo = { name: "Kenal", address: "valsad" };
+
+                // Set the request options, including method, headers, and body
+                const requestOptions = {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(updatedTodo),
+                };
+
+                // Send the request to the server and wait for the response
+                const response = await fetch('http://localhost:3000/table/2', requestOptions);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                // Extract the JSON data from the response
+                const data = await response.json();
+
+                console.log(`Updated date using PUT is: `, data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+
+
+
+
+
+        //--(PATECH) IS USED TO UPDATE SPECIFIC PART OF DATA
+        //====== Send the request to the server - PATCH -- Using fetch-promises =============//
+
+        const updateTodoPropertyButton = document.getElementById('update-todo-property-button');
+        updateTodoPropertyButton.addEventListener('click', event => {
+            event.preventDefault(); // prevent the default form submission behavior
+            updateTodoProperty();
+        });
+        const updateTodoProperty = () => {
+
+            const updatedProperty = { address: "Navsari" };
+
+            const requestOptions = {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedProperty),
+            };
+
+            // Send the request to the server and handle the response with Promises
+            fetch('http://localhost:3000/table/2', requestOptions)
+                .then(response => response.json())
+                .then(data => console.log(`Data property updated successfully:`, data))
+                .catch(error => console.error(error));
+        };
+
+        //====== Send the request to the server - PATCH -- Using fetch-async-await =============//
+        // const updateTodoPropertyButton = document.getElementById('update-todo-property-button');
+        // updateTodoPropertyButton.addEventListener('click', event => {
+        //     event.preventDefault(); // prevent the default form submission behavior
+        //     updateTodoProperty();
+        // });
+        // const updateTodoProperty = () => {
+        //     // Define the updated property value
+        //     const updatedProperty = { address: "Navsari" };
+
+        //     const requestOptions = {
+        //         method: 'PATCH',
+        //         headers: { 'Content-Type': 'application/json' },
+        //         body: JSON.stringify(updatedProperty),
+        //     };
+
+        //     fetch('http://localhost:3000/table/2', requestOptions)
+        //         .then(response => {
+        //             if (!response.ok) {
+        //                 throw new Error(`HTTP error! status: ${response.status}`);
+        //             }
+        //             return response.json();
+        //         })
+        //         .then(data => {
+        //             console.log(`Data property updated successfully:`, data);
+        //         })
+        //         .catch(error => {
+        //             console.error(error);
+        //         });
+        // };
 
     </script>
 </body>
