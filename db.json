@@ -19,10 +19,12 @@
   "table": [
     {
       "name": "viren",
+      "address": "valsad",
       "id": 1
     },
     {
-      "name": "patel",
+      "name": "Kenal",
+      "address": "Navsari",
       "id": 2
     }
   ]
