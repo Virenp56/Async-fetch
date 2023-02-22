@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    //=============Question: give three way i can make my code asynchronous in JS===========================================//
+
+    //------------ANSWER-------------------------------------------//
+    //Sure, here are three common ways to make your code asynchronous in JavaScript:
+
+    // 1)  Using callbacks: Callbacks are functions that are passed as arguments to other functions and are executed when the operation is completed.
+    //     You can use callbacks to simulate asynchronous operations in JavaScript.For example, you can use the setTimeout function to delay the execution 
+    //     of a function and provide a callback function that will be executed after the delay.
+    //     Here's an example:
+
+    function simulateAsyncOperation(callback) {
+      setTimeout(function () {
+        callback("Result of async operation");
+      }, 1000);
+    }
+
+    console.log("Before async operation");
+
+    simulateAsyncOperation(function (result) {
+      console.log("Async operation completed with result:", result);
+    });
+    console.log("After async operation");
+
+
+    // 2)  Using Promises: Promises provide a more elegant way to handle asynchronous operations in JavaScript.
+    //     A Promise is an object that represents the eventual completion(or failure) of an asynchronous operation, 
+    //     and allows you to attach callbacks that will be executed when the operation is completed.
+    //     Here's an example:
+
+
+    function simulateAsyncOperation() {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          resolve("Result of async operation");
+        }, 1000);
+      });
+    }
+
+    console.log("Before async operation");
+
+    simulateAsyncOperation().then(function (result) {
+      console.log("Async operation completed with result:", result);
+    });
+
+    console.log("After async operation");
+
+
+    // 3)  Using async / await: Async / await is a modern syntax for handling asynchronous operations in JavaScript, and is built on top of Promises.
+    //     The async keyword is used to mark a function as asynchronous, and the await keyword is used to wait for the completion of a Promise.
+    //     Here's an example:
+
+    async function simulateAsyncOperation() {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          resolve("Result of async operation");
+        }, 1000);
+      });
+    }
+    async function run() {
+      console.log("Before async operation");
+
+      const result = await simulateAsyncOperation();
+
+      console.log("Async operation completed with result:", result);
+
+      console.log("After async operation");
+    }
+    run();
+  </script>
+</body>
+
+</html>
