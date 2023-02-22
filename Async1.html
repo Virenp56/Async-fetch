@@ -12,13 +12,37 @@
     <button id="add-todo-button">Enter</button>
     <script>
 
-        // Send the request to the server
-        let addTodoButton = document.getElementById("add-todo-button");
+        //====== Send the request to the server -- Using fetch-promises =============//
+        // let addTodoButton = document.getElementById("add-todo-button");
 
-        addTodoButton.addEventListener('click', event => {// Attach an event listener to the button
-            event.preventDefault();
+        // addTodoButton.addEventListener('click', event => {// Attach an event listener to the button
+        //     event.preventDefault();
 
-            newTodo = { name: "Kenal", };
+        //     newTodo = { name: "Kenal", };
+
+        //     const requestOptions = {
+        //         method: 'POST',
+        //         headers: { 'Content-Type': 'application/json' },
+        //         body: JSON.stringify(newTodo),
+        //     };
+
+        //     fetch('http://localhost:3000/table', requestOptions)
+        //         .then(response => response.json())
+        //         .then(data => console.log(`inserted date is: `, data))
+        //         .catch(error => console.error(error));
+        // });
+
+
+        //====== Send the request to the server -- Using fetch-async-await =============//
+        const addTodoButton = document.getElementById('add-todo-button');
+        addTodoButton.addEventListener('click', event => {
+            event.preventDefault(); // prevent the default form submission behavior
+            addTodo();
+        });
+
+        const addTodo = async () => {
+
+            const newTodo = { name: "Kenal", };
 
             const requestOptions = {
                 method: 'POST',
@@ -26,20 +50,54 @@
                 body: JSON.stringify(newTodo),
             };
 
-            fetch('http://localhost:3000/table', requestOptions)
-                .then(response => response.json())
-                .then(data => console.log(data))
-                .catch(error => console.error(error));
-        });
+            try {
+                // Send the request to the server and wait for the response
+                const response = await fetch('http://localhost:3000/table', requestOptions);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                // Extract the JSON data from the response
+                const data = await response.json();
+                console.log(`inserted date is: `, data);
+
+            } catch (error) {
+                console.error(error);
+            }
+        };
 
 
 
 
-        //fetch data using GET
-        fetch('http://localhost:3000/table')
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error(error));
+
+
+        //=================fetch data using GET - -- Using fetch-promises====================//
+        // fetch('http://localhost:3000/table')
+        //     .then(response => response.json())
+        //     .then(data => console.log(`Data fetched successfully:`, data))
+        //     .catch(error => console.error(error));
+
+
+        //=================fetch data using GET - -- Using fetch-async-await====================//
+        const fetchTodos = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/table');
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                // Extract the JSON data from the response
+                const data = await response.json();
+                console.log(`Data fetched successfully:`, data);
+
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchTodos();
+
     </script>
 </body>
 
